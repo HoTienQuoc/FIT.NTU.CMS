@@ -1,7 +1,6 @@
 <?php
 namespace App\Models;
 use MongoDB\Laravel\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class UserModel extends Model
 {
