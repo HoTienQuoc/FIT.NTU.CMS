@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\NavigationController;
 
 Route::get("/", function () {
     return view("welcome");
@@ -56,3 +57,15 @@ Route::delete("/api/permissions/{id}", [
     "destroy",
 ]);
 Route::post("/api/permissions", [PermissionController::class, "create"]);
+
+Route::get("/admin/navigations", [NavigationController::class, "show"]);
+Route::get("/api/navigations", [
+    NavigationController::class,
+    "fetchNavigations",
+]);
+Route::put("/api/navigations/{id}", [NavigationController::class, "update"]);
+Route::delete("/api/navigations/{id}", [
+    NavigationController::class,
+    "destroy",
+]);
+Route::post("/api/navigations", [NavigationController::class, "create"]);
