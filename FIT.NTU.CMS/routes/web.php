@@ -8,6 +8,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\WidgetController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\NavigationController;
+use App\Http\Controllers\ThemeController;
 
 Route::get("/", function () {
     return view("welcome");
@@ -69,3 +70,9 @@ Route::delete("/api/navigations/{id}", [
     "destroy",
 ]);
 Route::post("/api/navigations", [NavigationController::class, "create"]);
+
+Route::get("/admin/themes", [ThemeController::class, "show"]);
+Route::get("/api/themes", [ThemeController::class, "fetchThemes"]);
+Route::put("/api/themes/{id}", [ThemeController::class, "update"]);
+Route::delete("/api/themes/{id}", [ThemeController::class, "destroy"]);
+Route::post("/api/themes", [ThemeController::class, "create"]);
