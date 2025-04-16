@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\WidgetController;
+use App\Http\Controllers\PermissionController;
 
 Route::get("/", function () {
     return view("welcome");
@@ -43,3 +44,15 @@ Route::get("/api/widgets", [WidgetController::class, "fetchWidgets"]);
 Route::put("/api/widgets/{id}", [WidgetController::class, "update"]);
 Route::delete("/api/widgets/{id}", [WidgetController::class, "destroy"]);
 Route::post("/api/widgets", [WidgetController::class, "create"]);
+
+Route::get("/admin/permissions", [PermissionController::class, "show"]);
+Route::get("/api/permissions", [
+    PermissionController::class,
+    "fetchPermissions",
+]);
+Route::put("/api/permissions/{id}", [PermissionController::class, "update"]);
+Route::delete("/api/permissions/{id}", [
+    PermissionController::class,
+    "destroy",
+]);
+Route::post("/api/permissions", [PermissionController::class, "create"]);
