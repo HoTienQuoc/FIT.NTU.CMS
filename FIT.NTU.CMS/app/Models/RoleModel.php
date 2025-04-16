@@ -8,6 +8,8 @@ class RoleModel extends Model
 {
     protected $connection = "mongodb";
     protected $collection = "roles";
-
-    protected $fillable = ["roleName"];
+    protected $fillable = ["name", "slug", "permissions"];
+    protected $casts = [
+        "permissions" => "array",
+    ];
 }

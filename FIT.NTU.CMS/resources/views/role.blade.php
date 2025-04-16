@@ -8,19 +8,23 @@
     </div>
     <table class="table table-striped">
       <thead>
-        <tr>
-          <th>RoleName</th>
-          <th>Actions</th>
-        </tr>
+          <tr>
+            <th>Name</th>
+            <th>Slug</th>
+            <th>Permissions</th>
+            <th>Actions</th>
+          </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="role in roles">
-          <td>[[ role.roleName ]]</td>
-          <td>
-            <button class="btn btn-sm btn-warning me-1" ng-click="openRoleModal(role)">Edit</button>
-            <button class="btn btn-sm btn-danger" ng-click="deleteRole(role.id)">Delete</button>
-          </td>
-        </tr>
+          <tr ng-repeat="role in roles">
+            <td>[[ role.name ]]</td>
+            <td>[[ role.slug ]]</td>
+            <td>[[ role.permissions.join(', ') ]]</td>
+            <td>
+              <button class="btn btn-sm btn-warning me-1" ng-click="openRoleModal(role)">Edit</button>
+              <button class="btn btn-sm btn-danger" ng-click="deleteRole(role.id)">Delete</button>
+            </td>
+          </tr>
       </tbody>
     </table>
     <div class="modal fade" id="roleModal" tabindex="-1" aria-hidden="true">
@@ -33,8 +37,16 @@
           <div class="modal-body">
             <form name="roleForm">
               <div class="mb-3">
-                <label>Role</label>
-                <input type="text" class="form-control" ng-model="formData.roleName" />
+                <label>Name</label>
+                <input type="text" class="form-control" ng-model="formData.name" required />
+              </div>
+              <div class="mb-3">
+                <label>Slug</label>
+                <input type="text" class="form-control" ng-model="formData.slug" required />
+              </div>
+              <div class="mb-3">
+                <label>Permissions (comma-separated)</label>
+                <input type="text" class="form-control" ng-model="formData.permissionsStr" />
               </div>
             </form>
           </div>

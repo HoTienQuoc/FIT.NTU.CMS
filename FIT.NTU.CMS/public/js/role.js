@@ -26,22 +26,27 @@
             });
         };
 
-        $scope.openRoleModal = function (roleName = null) {
-            if (roleName) {
+        $scope.openRoleModal = function (role = null) {
+            if (role) {
                 $scope.modalTitle = "Edit Role";
                 $scope.formData = {
-                    ...roleName,
+                    ...role,
+                    permissionsString: role.permissions.join(", "),
                 };
             } else {
                 $scope.modalTitle = "Add Role";
-                $scope.formData = { roleName: "" };
+                $scope.formData = { name: "", slug: "", permissionsString: "" };
             }
             modal.show();
         };
 
         $scope.saveRole = function () {
             const payload = {
-                roleName: $scope.formData.roleName,
+                name: $scope.formData.name,
+                slug: $scope.formData.slug,
+                permissions: $scope.formData.permissionsStr
+                    .split(",")
+                    .map((r) => r.trim()),
             };
             console.log(payload);
             if ($scope.formData.id) {
